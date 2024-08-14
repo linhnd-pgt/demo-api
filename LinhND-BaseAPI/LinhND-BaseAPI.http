@@ -1,0 +1,6 @@
+@LinhND_BaseAPI_HostAddress = http://localhost:5168
+
+GET {{LinhND_BaseAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

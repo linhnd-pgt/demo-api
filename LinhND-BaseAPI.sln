@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinhND-BaseAPI", "LinhND-BaseAPI\LinhND-BaseAPI.csproj", "{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{50293CE1-7630-49E0-8E76-B69BCAFF90DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50293CE1-7630-49E0-8E76-B69BCAFF90DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50293CE1-7630-49E0-8E76-B69BCAFF90DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50293CE1-7630-49E0-8E76-B69BCAFF90DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50293CE1-7630-49E0-8E76-B69BCAFF90DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1FAE1E7-7DFE-45FC-9ABD-F10C798F20D3}
+	EndGlobalSection
+EndGlobal
