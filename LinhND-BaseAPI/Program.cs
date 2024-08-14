@@ -22,7 +22,8 @@ try
 
     builder.Services.AddControllers();
 
-    
+
+
     // DB
     builder.Services.ConfigureSqlContext(builder.Configuration);
 

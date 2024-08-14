@@ -14,10 +14,10 @@ namespace Service.Entities
     public class AuthorEntity : AbstractBaseEntity
     {
         [Column("name"), Required, MinLength(2)]
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
         [Column("biography"), Required, MinLength(2), DataType(DataType.Text)]
-        public string Biography { get; set; }
+        public string Biography { get; set; } = String.Empty;
 
         [Column("dob")]
         public DateTime DateOfBirth { get; set;}

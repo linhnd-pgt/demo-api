@@ -8,22 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service;
-
-public static class ServiceExtensions
+namespace Service
 {
-    public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration config)
+
+    public static class ServiceExtensions
     {
 
-        string connectionString = config.GetConnectionString("DefaultConnection");
-        services.AddDbContext<ApplicationDbContext>(
-            options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34))));
-        
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(
+                options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34))));
+
+
+        }
+
+        public static void ConfigureCustomServices(IServiceCollection services)
+        {
+
+        }
+
     }
-
-    public static void ConfigureCustomServices(this IServiceCollection services)
-    {
-
-    }
-
 }

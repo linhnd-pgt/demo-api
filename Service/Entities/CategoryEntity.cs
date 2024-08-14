@@ -17,7 +17,7 @@ namespace Service.Entities
     {
 
         [Column("name"), Required, MinLength(2)]
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
         public Collection<BookCategoryEntity> CategoryBookList { get; set; }
 

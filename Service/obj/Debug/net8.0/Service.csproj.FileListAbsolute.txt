@@ -12,3 +12,6 @@ D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\refint\Service.dll
 D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\Service.pdb
 D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\Service.genruntimeconfig.cache
 D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\ref\Service.dll
+D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\Service.sourcelink.json
+D:\.NET-Projects\LinhND-BaseAPI\Service\bin\Debug\net8.0\Service.xml
+D:\.NET-Projects\LinhND-BaseAPI\Service\obj\Debug\net8.0\Service.xml

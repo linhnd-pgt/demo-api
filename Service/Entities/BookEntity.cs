@@ -16,17 +16,17 @@ namespace Service.Entities
     public class BookEntity : AbstractBaseEntity
     {
 
-        [Column("title"), Required,MinLength(2)]
-        public string Title { get; set; }
+        [Column("title"), Required, MinLength(2)]
+        public string Title { get; set; } = String.Empty;
 
         [Column("image"), MinLength(2)]
-        public string Image {  get; set; }
+        public string Image {  get; set; } = String.Empty;
 
         [Column("published_date")]
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishedDate { get; set; } = DateTime.Now;
 
         [Column("author_id"), ForeignKey(nameof(AuthorEntity.Id))]
-        public int AuthorId { get; set; }
+        public long AuthorId { get; set; }
 
         public AuthorEntity Author { get; set; }
 
