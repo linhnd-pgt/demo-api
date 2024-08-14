@@ -11,10 +11,10 @@ namespace Service.Entities
     public class BookCategoryEntity
     {
         [Column("book_id"), ForeignKey(nameof(BookEntity.Id))]
-        public int BookId { get; set; }
+        public long BookId { get; set; }
 
         [Column("category_id"), ForeignKey(nameof(CategoryEntity.Id))]
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
 
         public BookEntity Book { get; set; }   
 

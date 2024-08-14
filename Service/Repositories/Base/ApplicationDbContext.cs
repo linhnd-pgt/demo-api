@@ -20,13 +20,13 @@ namespace Service.Repositories.Base
 
 
         // default! is a way to suppress nullability warnings when initializing properties or fields
-        public DbSet<UserEntity> User { get; set; } = default!;
+        public DbSet<UserEntity> User { get; set; }
 
-        public DbSet<AuthorEntity> Author { get; set; } = default!;
+        public DbSet<AuthorEntity> Author { get; set; }
 
-        public DbSet<BookEntity> Book { get; set; } = default!;
+        public DbSet<BookEntity> Book { get; set; }
 
-        public DbSet<CategoryEntity> Category { get; set; } = default!;
+        public DbSet<CategoryEntity> Category { get; set; }
 
 
         // Configuring for Abstract Base Model for all other Models
@@ -49,7 +49,7 @@ namespace Service.Repositories.Base
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+           
 
             // created date, updated date as timestamp for all tables
             ConfigureBaseEntity<AuthorEntity>(modelBuilder);
@@ -66,6 +66,8 @@ namespace Service.Repositories.Base
             // set compositekey for book category id
             modelBuilder.Entity<BookCategoryEntity>()
                 .HasKey(value => new { value.BookId, value.CategoryId });
+
+            base.OnModelCreating(modelBuilder);
 
         }
 

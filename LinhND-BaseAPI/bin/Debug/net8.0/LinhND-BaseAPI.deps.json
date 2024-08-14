@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "LinhND-BaseAPI/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "8.0.7",
           "Service": "1.0.0",
           "Swashbuckle.AspNetCore": "6.7.0"
         },
@@ -671,7 +672,6 @@
       "Service/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.7",
-          "Microsoft.EntityFrameworkCore.Design": "8.0.7",
           "MySqlConnector": "2.3.7",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
           "Serilog.AspNetCore": "8.0.2"
