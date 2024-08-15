@@ -16,9 +16,17 @@ namespace Service.Services
     public interface IUserService
     {
 
-        void CreateUser(UserDTO user);
+        Task<bool> CreateUser(UserDTO userDTO);
 
-        Task<UserEntity> Login(LogInDTO logInDTO);
+        Task<bool> UpdateUser(UserDTO userDTO);
+
+        Task<UserEntity> UpdateUserWithEntity(UserEntity user);
+
+        Task<UserEntity> GetUserLoggedIn(string email, string password);
+
+        Task<UserEntity> GetUserByUsername(string username);
+
+        Task<UserEntity> GetUserById(long id);
 
     }
 
@@ -32,8 +40,69 @@ namespace Service.Services
             _userMapper = new UserMapper();
         }
 
-        public async Task<UserEntity> Login(LogInDTO logInDTO) => await _repositoryManager.userRepository.GetUser(new UserEntity() { UserName = logInDTO.username });
+        public async Task<bool> CreateUser(UserDTO userDTO)
+        {
+            try
+            {
+                var user = _userMapper.userDtoToEntity(userDTO);
+                user.Role = Enums.EnumType.Role.ROLE_MEMBER;
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.password);
+                _repositoryManager.userRepository.Create(user);
+                await _repositoryManager.SaveAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
 
-        public void CreateUser(UserDTO userDTO) => _repositoryManager.userRepository.Create(_userMapper.userDtoToEntity(userDTO));
+        }
+
+        public async Task<UserEntity> GetUserLoggedIn(string username, string password)
+        {
+            // check user with the username first, then proceed to check its password
+            var user = await _repositoryManager.userRepository.GetUserByUserName(username);
+
+            // if user cant be found with username and bcrypt cant verify password
+            // throw new exception
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+                throw new Exception("Username or Password is Incorrect");
+
+            // if not, return to the logged in user
+            return user;
+        }
+
+        public async Task<bool> UpdateUser(UserDTO userDTO)
+        {
+            try
+            {
+                _repositoryManager.userRepository.Update(_userMapper.userDtoToEntity(userDTO));
+                await _repositoryManager.SaveAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<UserEntity> UpdateUserWithEntity(UserEntity user)
+        {
+            try
+            {
+                _repositoryManager.userRepository.Update(user);
+                await _repositoryManager.SaveAsync();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<UserEntity> GetUserByUsername(string username) => await _repositoryManager.userRepository.GetUserByUserName(username);
+
+        public async Task<UserEntity> GetUserById(long id) => await _repositoryManager.userRepository.GetUserById(id);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.Helpers;
 using Service.Services.Base;
 
 namespace LinhND_BaseAPI.Controllers
@@ -10,6 +11,7 @@ namespace LinhND_BaseAPI.Controllers
 
         protected readonly IServiceManager _serviceManager;
 
+        protected readonly IHttpContextAccessor _contextAccessor;
 
         public BaseController(IServiceManager serviceManager)
         {

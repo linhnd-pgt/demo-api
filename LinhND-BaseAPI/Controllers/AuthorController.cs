@@ -1,4 +1,5 @@
 ﻿using LinhND_BaseAPI.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs;
@@ -12,7 +13,7 @@ namespace LinhND_BaseAPI.Controllers
     public class AuthorController : BaseController
     {
 
-        public AuthorController(IServiceManager serviceManager) : base(serviceManager) { }
+        public AuthorController(IServiceManager serviceManager,IHttpContextAccessor contextAccessor) : base(serviceManager) { }
 
         /// <summary>
         /// Retrieves a list of all authors.
@@ -50,6 +51,7 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAllAuthorPaginated([FromQuery] int page, [FromQuery] int pageSize)
         {
+
             if(page == 0 || pageSize == 0)
             {
                 page = 1;
@@ -61,20 +63,24 @@ namespace LinhND_BaseAPI.Controllers
             {
                 return NotFound(DevMessageConstants.OBJECT_IS_EMPTY);
             }
+
             return Ok(result);
+
         }
 
         /// <summary>
-        /// Retrieves a message dictates that where the object is added or not.
+        /// Retrieves a message dictates that whether the object is added or not.
         /// </summary>
         /// <remarks>
-        /// This endpoint returns a message dictates that where the object is added or not.
+        /// This endpoint returns a message dictates that whether the object is added or not.
         /// </remarks>
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If added failed.</response>
+        [Authorize(Roles = "ROLE_LIBRARIAN")]
         [HttpPost("create")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateAutor([FromBody] AuthorDTO newAuthor)
         {
@@ -84,20 +90,24 @@ namespace LinhND_BaseAPI.Controllers
                 return NotFound(DevMessageConstants.ADD_OBJECT_FAILED);
             }
             return Ok(DevMessageConstants.ADD_OBJECT_SUCCESS);
+
+            
         }
 
 
         /// <summary>
-        /// Retrieves a message dictates that where the object is updated or not.
+        /// Retrieves a message dictates that whether the object is updated or not.
         /// </summary>
         /// <remarks>
-        /// This endpoint returns a message dictates that where the object is updated or not.
+        /// This endpoint returns a message dictates that whether the object is updated or not.
         /// </remarks>
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If update failed.</response>
+        [Authorize(Roles = "ROLE_LIBRARIAN")]
         [HttpPut("update/{authorId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAuthor([FromRoute] long authorId, [FromBody] AuthorDTO newAuthor)
         {
@@ -112,16 +122,18 @@ namespace LinhND_BaseAPI.Controllers
 
 
         /// <summary>
-        /// Retrieves a message dictates that where the object is deleted or not.
+        /// Retrieves a message dictates that whether the object is deleted or not.
         /// </summary>
         /// <remarks>
-        /// This endpoint returns a message dictates that where the object is deleted or not.
+        /// This endpoint returns a message dictates that whether the object is deleted or not.
         /// </remarks>
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If delete failed.</response>
+        [Authorize(Roles = "ROLE_LIBRARIAN")]
         [HttpDelete("delete/{authorId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAuthor([FromRoute] long authorId)
         {

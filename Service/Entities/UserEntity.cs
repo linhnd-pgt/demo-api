@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Service.Entities;
 using Service.Entities.@base;
+using Service.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +37,14 @@ namespace Service.Entities
 
         // role only receives Admin as 0, Librarian as 1, Member as 2
         [Column("role")]
-        public string Role { get; set; }
+        public EnumType.Role Role { get; set; }
+
+        [NotMapped]
+        public string? AccessToken { get; set; }
+
+        public string? RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenExpiryTime { get; set; }
 
         public UserEntity() { }
 

@@ -16,5 +16,29 @@
         <member name="M:Service.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Service.Migrations.Version2_UpdateUserTable">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.Version2_UpdateUserTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.Version2_UpdateUserTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.Version2_UpdateUserTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Service.Migrations.V3_UpdateUserTable">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V3_UpdateUserTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V3_UpdateUserTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V3_UpdateUserTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

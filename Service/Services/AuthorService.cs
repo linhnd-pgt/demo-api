@@ -1,4 +1,5 @@
-﻿using Service.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+using Service.DTOs;
 using Service.Entities;
 using Service.Helpers;
 using Service.Repositories.Base;
@@ -29,7 +30,8 @@ namespace Service.Services
 
     public class AuthorService : ServiceBase, IAuthorService
     {
-        private readonly AuthorMapper _authorMapper;
+   
+        private readonly IAuthorMapper _authorMapper;
 
         public AuthorService(IRepositoryManager repositoryManager) : base(repositoryManager)
         {
@@ -45,7 +47,9 @@ namespace Service.Services
         {
             try
             {
-                _repositoryManager.authorRepository.Create(_authorMapper.AuthorDtoToEntity(authorDTO));
+                AuthorEntity author = _authorMapper.AuthorDtoToEntity(authorDTO);
+                
+                _repositoryManager.authorRepository.Create(author);
                 await _repositoryManager.SaveAsync();
                 return true;
             }

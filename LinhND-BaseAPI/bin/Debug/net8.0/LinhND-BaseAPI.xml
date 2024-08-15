@@ -28,10 +28,10 @@
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.CreateAutor(Service.DTOs.AuthorDTO)">
             <summary>
-            Retrieves a message dictates that where the object is added or not.
+            Retrieves a message dictates that whether the object is added or not.
             </summary>
             <remarks>
-            This endpoint returns a message dictates that where the object is added or not.
+            This endpoint returns a message dictates that whether the object is added or not.
             </remarks>
             <returns>A message.</returns>
             <response code="200">Returns a message.</response>
@@ -39,10 +39,10 @@
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.UpdateAuthor(System.Int64,Service.DTOs.AuthorDTO)">
             <summary>
-            Retrieves a message dictates that where the object is updated or not.
+            Retrieves a message dictates that whether the object is updated or not.
             </summary>
             <remarks>
-            This endpoint returns a message dictates that where the object is updated or not.
+            This endpoint returns a message dictates that whether the object is updated or not.
             </remarks>
             <returns>A message.</returns>
             <response code="200">Returns a message.</response>
@@ -50,10 +50,21 @@
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.DeleteAuthor(System.Int64)">
             <summary>
-            Retrieves a message dictates that where the object is deleted or not.
+            Retrieves a message dictates that whether the object is deleted or not.
             </summary>
             <remarks>
-            This endpoint returns a message dictates that where the object is deleted or not.
+            This endpoint returns a message dictates that whether the object is deleted or not.
+            </remarks>
+            <returns>A message.</returns>
+            <response code="200">Returns a message.</response>
+            <response code="404">If delete failed.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.UserController.DeleteAuthor(System.Int64,System.String)">
+            <summary>
+            Retrieves a message dictates that whether the object is deleted or not.
+            </summary>
+            <remarks>
+            This endpoint returns a message dictates that whether the object is deleted or not.
             </remarks>
             <returns>A message.</returns>
             <response code="200">Returns a message.</response>

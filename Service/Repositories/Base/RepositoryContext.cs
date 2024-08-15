@@ -45,6 +45,11 @@ namespace Service.Repositories.Base
                 .HasColumnType("TIMESTAMP")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
+            // Convert the enum to a string in the database
+            modelBuilder.Entity<UserEntity>()
+               .Property(u => u.Role)
+               .HasConversion<string>();
+
 
         }
 
