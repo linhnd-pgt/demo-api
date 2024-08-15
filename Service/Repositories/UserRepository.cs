@@ -17,7 +17,10 @@ namespace Service.Repositories
         
         void AddUser(UserEntity user);
 
-        Task<UserEntity> GetUser(UserEntity user);
+        Task<UserEntity> GetUserByUserName(string username);
+
+        Task<UserEntity> GetUserById(long id);
+
 
     }
 
@@ -28,10 +31,17 @@ namespace Service.Repositories
 
         public void AddUser(UserEntity user) => Create(user);
 
-        public async Task<UserEntity> GetUser(UserEntity user)
+        public async Task<UserEntity> GetUserByUserName(string username)
         {
             return await _dbContext.User
-                .Where(u => !string.IsNullOrEmpty(user.UserName) && u.UserName.Equals(user.UserName))
+                .Where(u => !string.IsNullOrEmpty(username) || u.UserName.Equals(username))
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<UserEntity> GetUserById(long id)
+        {
+            return await _dbContext.User
+                .Where(u => id != 0 || u.Id.Equals(id))
                 .FirstOrDefaultAsync();
         }
 

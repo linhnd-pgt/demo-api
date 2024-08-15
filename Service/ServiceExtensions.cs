@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service.Helpers;
 using Service.Repositories.Base;
 using Service.Services.Base;
 using System;
@@ -28,6 +29,7 @@ namespace Service
         {
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IRepositoryManager, RepositoryManager>();
+            services.AddScoped<IAuthorMapper, AuthorMapper>();
             //services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         }
 

@@ -14,6 +14,8 @@ namespace Service.Repositories.Base
 
         IAuthorRepository authorRepository { get; }
 
+        IBookRepostiroy bookRepostiroy { get; }
+
         Task SaveAsync();
 
     }
@@ -26,6 +28,8 @@ namespace Service.Repositories.Base
         private readonly IUserRepository _userRepository;
 
         private readonly IAuthorRepository _authorRepository;
+
+        private readonly IBookRepostiroy _bookRepostiroy;
 
         public RepositoryManager(RepositoryContext context)
         {

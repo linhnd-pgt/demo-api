@@ -244,6 +244,12 @@ namespace Service.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("password_hash");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("longtext")
