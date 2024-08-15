@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Repositories.Base;
+using Service.Services.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,17 @@ namespace Service
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(
+            services.AddDbContext<RepositoryContext>(
                 options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34))));
 
 
         }
 
-        public static void ConfigureCustomServices(IServiceCollection services)
+        public static void ConfigureCustomServices(this IServiceCollection services)
         {
-
+            services.AddScoped<IServiceManager, ServiceManager>();
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+            //services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         }
 
     }

@@ -38,5 +38,14 @@ namespace Service.Entities
         [Column("role")]
         public string Role { get; set; }
 
+        public UserEntity() { }
+
+        public UserEntity(long id, string userName, string passwordHash, string email)
+        {
+            Id = id;
+            UserName = userName;
+            PasswordHash = passwordHash;
+            Email = email;
+        }
     }
 }

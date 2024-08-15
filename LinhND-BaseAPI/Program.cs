@@ -27,6 +27,9 @@ try
     // DB
     builder.Services.ConfigureSqlContext(builder.Configuration);
 
+    // Services
+    builder.Services.ConfigureCustomServices();
+
     builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console());
 
@@ -54,11 +57,11 @@ try
             }
         });
 
- /*       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
         // config swagger to read xml comments to generate
-        swagger.IncludeXmlComments(xmlPath);*/
+        swagger.IncludeXmlComments(xmlPath);
     });
 
 
