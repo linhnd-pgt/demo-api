@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace Service.Repositories.Base
 {
-    public class ApplicationDbContext : DbContext
+    public class RepositoryContext : DbContext
     {
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions) : base (dbContextOptions) 
+        public RepositoryContext(DbContextOptions<RepositoryContext> dbContextOptions) : base (dbContextOptions) 
         {
 
         }
 
 
         // default! is a way to suppress nullability warnings when initializing properties or fields
-        public DbSet<UserEntity> User { get; set; }
+        public DbSet<UserEntity> User { get; set; } = default!;
 
-        public DbSet<AuthorEntity> Author { get; set; }
+        public DbSet<AuthorEntity> Author { get; set; } = default!;
 
-        public DbSet<BookEntity> Book { get; set; }
+        public DbSet<BookEntity> Book { get; set; } = default!;
 
-        public DbSet<CategoryEntity> Category { get; set; }
+        public DbSet<CategoryEntity> Category { get; set; } = default!;
 
 
         // Configuring for Abstract Base Model for all other Models
@@ -44,6 +44,7 @@ namespace Service.Repositories.Base
                 .Property(abstractBase => abstractBase.UpdatedDate)
                 .HasColumnType("TIMESTAMP")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
+
 
         }
 
@@ -66,6 +67,7 @@ namespace Service.Repositories.Base
             // set compositekey for book category id
             modelBuilder.Entity<BookCategoryEntity>()
                 .HasKey(value => new { value.BookId, value.CategoryId });
+                
 
             base.OnModelCreating(modelBuilder);
 
