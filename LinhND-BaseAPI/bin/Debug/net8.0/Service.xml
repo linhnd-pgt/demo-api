@@ -40,5 +40,65 @@
         <member name="M:Service.Migrations.V3_UpdateUserTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Service.Migrations.V4_AddCascadeToBookCategory">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V4_AddCascadeToBookCategory.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V4_AddCascadeToBookCategory.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V4_AddCascadeToBookCategory.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Service.Migrations.V5_UpdateCreatedAtUpdatedAt">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V5_UpdateCreatedAtUpdatedAt.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V5_UpdateCreatedAtUpdatedAt.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V5_UpdateCreatedAtUpdatedAt.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Service.Migrations.V6_UpdateCreatedAtUpdatedAt">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V6_UpdateCreatedAtUpdatedAt.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V6_UpdateCreatedAtUpdatedAt.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V6_UpdateCreatedAtUpdatedAt.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Service.Migrations.V7_UpdateAuthorToHaveBookList">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V7_UpdateAuthorToHaveBookList.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V7_UpdateAuthorToHaveBookList.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V7_UpdateAuthorToHaveBookList.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Service.Migrations.V8_AdjustSomeTables">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V8_AdjustSomeTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V8_AdjustSomeTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Service.Migrations.V8_AdjustSomeTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

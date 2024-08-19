@@ -55,11 +55,11 @@ namespace LinhND_BaseAPI.Controllers
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If delete failed.</response>
         [Authorize(Roles = "ROLE_ADMIN")]
-        [HttpDelete("update-role")]
+        [HttpPut("update-role")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteAuthor([FromQuery] long id, string role)
+        public async Task<IActionResult> UpdateUser([FromQuery] long id, string role)
         {
             if (role == "ROLE_ADMIN" || role == "ROLE_LIBRARIAN" || role == "ROLE_MEMBER")
             {

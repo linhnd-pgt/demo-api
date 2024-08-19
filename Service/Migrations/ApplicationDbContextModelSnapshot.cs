@@ -120,8 +120,10 @@ namespace Service.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("created_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("created_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("DeleteFlag")
                         .HasColumnType("tinyint(1)")
@@ -147,8 +149,10 @@ namespace Service.Migrations
                         .HasColumnName("updated_by");
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("updated_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("updated_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
                     b.HasKey("Id");
 
@@ -179,8 +183,10 @@ namespace Service.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("created_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("created_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("DeleteFlag")
                         .HasColumnType("tinyint(1)")
@@ -197,8 +203,10 @@ namespace Service.Migrations
                         .HasColumnName("updated_by");
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("updated_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("updated_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
                     b.HasKey("Id");
 
@@ -227,8 +235,10 @@ namespace Service.Migrations
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("created_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("created_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("DeleteFlag")
                         .HasColumnType("tinyint(1)")
@@ -261,8 +271,10 @@ namespace Service.Migrations
                         .HasColumnName("updated_by");
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("updated_date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP")
+                        .HasColumnName("updated_date")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
                     b.Property<string>("UserName")
                         .IsRequired()

@@ -28,6 +28,8 @@ namespace Service.Repositories.Base
 
         public DbSet<CategoryEntity> Category { get; set; } = default!;
 
+        public DbSet<BookCategoryEntity> BookCategories { get; set; } = default!;   
+
 
         // Configuring for Abstract Base Model for all other Models
         private void ConfigureBaseEntity<TAnyModel>(ModelBuilder modelBuilder) where TAnyModel : AbstractBaseEntity
@@ -45,10 +47,7 @@ namespace Service.Repositories.Base
                 .HasColumnType("TIMESTAMP")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
-            // Convert the enum to a string in the database
-            modelBuilder.Entity<UserEntity>()
-               .Property(u => u.Role)
-               .HasConversion<string>();
+          
 
 
         }
@@ -59,10 +58,9 @@ namespace Service.Repositories.Base
 
             // created date, updated date as timestamp for all tables
             ConfigureBaseEntity<AuthorEntity>(modelBuilder);
-            ConfigureBaseEntity<AuthorEntity>(modelBuilder);
-            ConfigureBaseEntity<AuthorEntity>(modelBuilder);
-            ConfigureBaseEntity<AuthorEntity>(modelBuilder);
-            ConfigureBaseEntity<AuthorEntity>(modelBuilder);
+            ConfigureBaseEntity<BookEntity>(modelBuilder);
+            ConfigureBaseEntity<CategoryEntity>(modelBuilder);
+            ConfigureBaseEntity<UserEntity>(modelBuilder);
 
             // set dob to timme stamp
             modelBuilder.Entity<AuthorEntity>()
@@ -72,7 +70,25 @@ namespace Service.Repositories.Base
             // set compositekey for book category id
             modelBuilder.Entity<BookCategoryEntity>()
                 .HasKey(value => new { value.BookId, value.CategoryId });
-                
+
+            // Convert the enum to a string in the database
+            modelBuilder.Entity<UserEntity>()
+               .Property(u => u.Role)
+               .HasConversion<string>();
+
+            modelBuilder.Entity<BookEntity>()
+                .HasMany(book => book.BookCategoryList)
+                .WithOne(bookCate => bookCate.Book)
+                .HasForeignKey(bookCate => bookCate.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CategoryEntity>()
+                .HasMany(cate => cate.CategoryBookList)
+                .WithOne(cateBook => cateBook.Category)
+                .HasForeignKey(cateBook => cateBook.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
 
             base.OnModelCreating(modelBuilder);
 

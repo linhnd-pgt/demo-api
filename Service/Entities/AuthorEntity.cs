@@ -23,17 +23,7 @@ namespace Service.Entities
         [Column("dob")]
         public DateTime DateOfBirth { get; set;}
 
-        [JsonIgnore]
-        public Collection<BookEntity> Books { get; set; }
+        public ICollection<BookEntity> Books { get; set; }
 
-        public AuthorEntity() { }
-
-        public AuthorEntity(long id, string name, string biography, DateTime dateOfBirth)
-        {
-            Id = id;
-            Name = name;
-            Biography = biography;
-            DateOfBirth = dateOfBirth;
-        }
     }
 }

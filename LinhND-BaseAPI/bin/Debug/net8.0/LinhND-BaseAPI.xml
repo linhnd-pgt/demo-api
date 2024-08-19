@@ -11,9 +11,9 @@
             <remarks>
             This endpoint returns a list of authors available in the system.
             </remarks>
-            <returns>A list of categories.</returns>
+            <returns>A list of authors.</returns>
             <response code="200">Returns the list of authors.</response>
-            <response code="404">If no categories are found.</response>
+            <response code="404">If no authors are found.</response>
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.GetAllAuthorPaginated(System.Int32,System.Int32)">
             <summary>
@@ -22,9 +22,9 @@
             <remarks>
             This endpoint returns a list of authors available in the system paginated with page size and page number.
             </remarks>
-            <returns>A list of categories.</returns>
+            <returns>A list of authors.</returns>
             <response code="200">Returns the list of authors.</response>
-            <response code="404">If no categories are found.</response>
+            <response code="404">If no authors are found.</response>
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.CreateAutor(Service.DTOs.AuthorDTO)">
             <summary>
@@ -35,7 +35,7 @@
             </remarks>
             <returns>A message.</returns>
             <response code="200">Returns a message.</response>
-            <response code="404">If added failed.</response>
+            <response code="404">If add failed.</response>
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.UpdateAuthor(System.Int64,Service.DTOs.AuthorDTO)">
             <summary>
@@ -59,7 +59,51 @@
             <response code="200">Returns a message.</response>
             <response code="404">If delete failed.</response>
         </member>
-        <member name="M:LinhND_BaseAPI.Controllers.UserController.DeleteAuthor(System.Int64,System.String)">
+        <member name="M:LinhND_BaseAPI.Controllers.BookController.GetAllBooks">
+            <summary>
+            Retrieves a list of all books.
+            </summary>
+            <remarks>
+            This endpoint returns a list of books available in the system.
+            </remarks>
+            <returns>A list of books.</returns>
+            <response code="200">Returns the list of books.</response>
+            <response code="404">If no books are found.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.BookController.GetAllAuthorPaginated(System.Int32,System.Int32)">
+            <summary>
+            Retrieves a list of all books paginated with page size and page number.
+            </summary>
+            <remarks>
+            This endpoint returns a list of books available in the system paginated with page size and page number.
+            </remarks>
+            <returns>A list of books.</returns>
+            <response code="200">Returns the list of books.</response>
+            <response code="404">If no books are found.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.BookController.CreateBook(Service.DTOs.BookRequestDTO)">
+            <summary>
+            Retrieves a message dictates that whether the object is added or not.
+            </summary>
+            <remarks>
+            This endpoint returns a message dictates that whether the object is added or not.
+            </remarks>
+            <returns>A message.</returns>
+            <response code="200">Returns a message.</response>
+            <response code="404">If add failed.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.BookController.UpdateBook(Service.DTOs.BookRequestDTO)">
+            <summary>
+            Retrieves a message dictates that whether the object is added or not.
+            </summary>
+            <remarks>
+            This endpoint returns a message dictates that whether the object is added or not.
+            </remarks>
+            <returns>A message.</returns>
+            <response code="200">Returns a message.</response>
+            <response code="404">If add failed.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.UserController.UpdateUser(System.Int64,System.String)">
             <summary>
             Retrieves a message dictates that whether the object is deleted or not.
             </summary>

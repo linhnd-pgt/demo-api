@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 namespace Service.Repositories
 {
 
-    public interface IBookRepostiroy
+    public interface IBookRepository : IRepositoryBase<BookEntity>
     {
         Task<List<BookEntity>> GetBookList();
 
         Task<List<BookEntity>> GetBookListPaginated(int page, int pageSize);
+
+        Task<BookEntity> GetBookById(long id);
 
         void AddBook(BookEntity book);
 
@@ -22,27 +24,29 @@ namespace Service.Repositories
 
         void DeleteBook(BookEntity book);
 
-        void UpdateBookToCategory(BookEntity book);
+        
     }
-    public class BookRepository : RepositoryBase<BookEntity>, IBookRepostiroy
-    {
 
-        private readonly RepositoryContext _repositoryContext;
+    public class BookRepository : RepositoryBase<BookEntity>, IBookRepository
+    {
 
         public BookRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
 
         }
 
-        public async Task<List<BookEntity>> GetBookList() => await _repositoryContext.Book.ToListAsync();
+        public async Task<List<BookEntity>> GetBookList() => await _dbContext.Book.Include(b => b.Author).ToListAsync();
 
-        public async Task<List<BookEntity>> GetBookListPaginated(int page, int pageSize) => await _repositoryContext.Book.Skip(page).Take(pageSize).ToListAsync();
+        public async Task<List<BookEntity>> GetBookListPaginated(int page, int pageSize) => await _dbContext.Book.Include(b => b.Author).Skip(page).Take(pageSize).ToListAsync();
 
-        public async void AddBook(BookEntity book) => _repositoryContext.Book.Add(book);
+        public void AddBook(BookEntity book) => _dbContext.Book.Add(book);
 
-        public void UpdateBook(BookEntity book) => _repositoryContext.Book.Update(book);
+        public void UpdateBook(BookEntity book) => _dbContext.Book.Update(book);
 
-        public void DeleteBook(BookEntity book) => _repositoryContext.Book.Remove(book);
+        public void DeleteBook(BookEntity book) => _dbContext.Book.Remove(book);
+
+        public async Task<BookEntity> GetBookById(long id) => await _dbContext.Book.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);   
+
 
     }
 }
