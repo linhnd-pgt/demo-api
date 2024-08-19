@@ -13,14 +13,13 @@ namespace Service.DTOs
 {
     public class AuthorDTO
     {
-        [JsonIgnore]
-        public long id { get; set; }
+        public long Id { get; set; }
          
-        public string name { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
 
-        public string biography { get; set; } = String.Empty;
+        public string Biography { get; set; } = String.Empty;
 
-        public DateTime dateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
     }
 }

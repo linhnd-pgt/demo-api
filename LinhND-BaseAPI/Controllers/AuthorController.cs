@@ -13,7 +13,7 @@ namespace LinhND_BaseAPI.Controllers
     public class AuthorController : BaseController
     {
 
-        public AuthorController(IServiceManager serviceManager,IHttpContextAccessor contextAccessor) : base(serviceManager) { }
+        public AuthorController(IServiceManager serviceManager) : base(serviceManager) { }
 
         /// <summary>
         /// Retrieves a list of all authors.
@@ -21,11 +21,11 @@ namespace LinhND_BaseAPI.Controllers
         /// <remarks>
         /// This endpoint returns a list of authors available in the system.
         /// </remarks>
-        /// <returns>A list of categories.</returns>
+        /// <returns>A list of authors.</returns>
         /// <response code="200">Returns the list of authors.</response>
-        /// <response code="404">If no categories are found.</response>
+        /// <response code="404">If no authors are found.</response>
         [HttpGet("get-all")]
-        [ProducesResponseType(typeof(IEnumerable<AuthorEntity>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<AuthorDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAllAuthor()
         {
@@ -43,11 +43,11 @@ namespace LinhND_BaseAPI.Controllers
         /// <remarks>
         /// This endpoint returns a list of authors available in the system paginated with page size and page number.
         /// </remarks>
-        /// <returns>A list of categories.</returns>
+        /// <returns>A list of authors.</returns>
         /// <response code="200">Returns the list of authors.</response>
-        /// <response code="404">If no categories are found.</response>
+        /// <response code="404">If no authors are found.</response>
         [HttpGet("get-all-paginated")]
-        [ProducesResponseType(typeof(IEnumerable<AuthorEntity>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<AuthorDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAllAuthorPaginated([FromQuery] int page, [FromQuery] int pageSize)
         {
@@ -76,7 +76,7 @@ namespace LinhND_BaseAPI.Controllers
         /// </remarks>
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
-        /// <response code="404">If added failed.</response>
+        /// <response code="404">If add failed.</response>
         [Authorize(Roles = "ROLE_LIBRARIAN")]
         [HttpPost("create")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -111,7 +111,7 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAuthor([FromRoute] long authorId, [FromBody] AuthorDTO newAuthor)
         {
-            newAuthor.id = authorId;
+            newAuthor.Id = authorId;
             var result = await _serviceManager.AuthorService.UpdateAuthor(newAuthor);
             if (!result)
             {

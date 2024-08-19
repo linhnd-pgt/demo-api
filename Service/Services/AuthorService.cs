@@ -15,9 +15,9 @@ namespace Service.Services
 
     public interface IAuthorService
     {
-        Task<List<AuthorEntity>> GetAllAuthors();
+        Task<List<AuthorDTO>> GetAllAuthors();
 
-        Task<List<AuthorEntity>> GetAuthorListPaginated(int page, int pageSize);
+        Task<List<AuthorDTO>> GetAuthorListPaginated(int page, int pageSize);
 
         AuthorEntity GetAuthorById(long id);
 
@@ -38,9 +38,17 @@ namespace Service.Services
             _authorMapper = new AuthorMapper();
         }
 
-        public async Task<List<AuthorEntity>> GetAllAuthors() => await _repositoryManager.authorRepository.GetAllAuthors();
+        public async Task<List<AuthorDTO>> GetAllAuthors()
+        {
+            var authorEntityList = await _repositoryManager.authorRepository.GetAllAuthors();
+            return authorEntityList.Select(e => _authorMapper.AuthorEnityToAuthorDto(e)).ToList();
+        }
 
-        public async Task<List<AuthorEntity>> GetAuthorListPaginated(int page, int pageSize) => await _repositoryManager.authorRepository.GetAllAuthorsPagenated(page, pageSize);
+        public async Task<List<AuthorDTO>> GetAuthorListPaginated(int page, int pageSize)
+        {
+            var authorEntityList = await _repositoryManager.authorRepository.GetAllAuthorsPagenated(page, pageSize);
+            return authorEntityList.Select(e => _authorMapper.AuthorEnityToAuthorDto(e)).ToList();
+        }
 
         public AuthorEntity GetAuthorById(long id) => _repositoryManager.authorRepository.GetAuthorById(id).Result;
         public async Task<bool> CreateAuthor(AuthorDTO authorDTO)

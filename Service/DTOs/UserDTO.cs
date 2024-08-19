@@ -11,13 +11,12 @@ namespace Service.DTOs
 {
     public class UserDTO
     {
-        [JsonIgnore]
-        public long id { get; set; }
-        public string username { get; set; } = String.Empty;
+        public long Id { get; set; }
+        public string Username { get; set; } = String.Empty;
 
-        public string password { get; set; } = String.Empty;
+        public string Password { get; set; } = String.Empty;
 
-        public string email { get; set; }
+        public string Email { get; set; }
 
     }
 }

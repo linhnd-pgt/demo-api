@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LinhND-BaseAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+764bdca9f66eaef7e9795982fc99cf2c68b2b824")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a08f69bb804d3b9d448eea77dc83fefdf532c3a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("LinhND-BaseAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LinhND-BaseAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

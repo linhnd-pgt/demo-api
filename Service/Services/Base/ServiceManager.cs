@@ -14,6 +14,7 @@ namespace Service.Services.Base
         ITokenService TokenService { get; }
         IUserService UserService { get; }
         IAuthorService AuthorService { get; }
+        IBookService BookService { get; }
     }
 
     public class ServiceManager : IServiceManager
@@ -25,11 +26,14 @@ namespace Service.Services.Base
 
         private readonly Lazy<IAuthorService> _lazyAuthorService;
 
+        private readonly Lazy<IBookService> _lazyBookService;
+
         public ServiceManager(IRepositoryManager repositoryManager)
         {
             _lazytokenService = new Lazy<ITokenService> (() => new TokenService(UserService));
             _lazyUserService = new Lazy<IUserService>(() => new UserService(repositoryManager));
             _lazyAuthorService = new Lazy<IAuthorService>(() => new AuthorService(repositoryManager));
+            _lazyBookService = new Lazy<IBookService>(() => new BookService(repositoryManager));
         }
 
         public ITokenService TokenService => _lazytokenService.Value;
@@ -37,5 +41,7 @@ namespace Service.Services.Base
         public IUserService UserService => _lazyUserService.Value;
 
         public IAuthorService AuthorService => _lazyAuthorService.Value;
+
+        public IBookService BookService => _lazyBookService.Value;
     }
 }

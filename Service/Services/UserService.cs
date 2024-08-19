@@ -20,7 +20,7 @@ namespace Service.Services
 
         Task<bool> UpdateUser(UserDTO userDTO);
 
-        Task<UserEntity> UpdateUserWithEntity(UserEntity user);
+        Task<UserDTO> UpdateUserWithEntity(UserEntity user);
 
         Task<UserEntity> GetUserLoggedIn(string email, string password);
 
@@ -46,12 +46,12 @@ namespace Service.Services
             {
                 var user = _userMapper.userDtoToEntity(userDTO);
                 user.Role = Enums.EnumType.Role.ROLE_MEMBER;
-                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.password);
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
                 _repositoryManager.userRepository.Create(user);
                 await _repositoryManager.SaveAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -80,28 +80,27 @@ namespace Service.Services
                 await _repositoryManager.SaveAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
         }
 
-        public async Task<UserEntity> UpdateUserWithEntity(UserEntity user)
+        public async Task<UserDTO> UpdateUserWithEntity(UserEntity user)
         {
             try
             {
                 _repositoryManager.userRepository.Update(user);
                 await _repositoryManager.SaveAsync();
-                return user;
+                return _userMapper.userEntityToDTO(user);
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
         }
 
         public async Task<UserEntity> GetUserByUsername(string username) => await _repositoryManager.userRepository.GetUserByUserName(username);
-
         public async Task<UserEntity> GetUserById(long id) => await _repositoryManager.userRepository.GetUserById(id);
 
     }
