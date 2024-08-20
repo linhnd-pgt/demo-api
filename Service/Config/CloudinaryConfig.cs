@@ -1,4 +1,4 @@
-﻿namespace LinhND_BaseAPI.Config
+﻿namespace Service.Config
 {
     public class CloudinaryConfig
     {

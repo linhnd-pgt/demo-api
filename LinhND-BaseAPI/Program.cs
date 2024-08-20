@@ -9,7 +9,6 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using CloudinaryDotNet;
 using Microsoft.Extensions.Options;
-using LinhND_BaseAPI.Config;
 
 // write Log in cmd
 Log.Logger = new LoggerConfiguration()
@@ -121,16 +120,6 @@ try
 
         // config swagger to read xml comments to generate
         swagger.IncludeXmlComments(xmlPath);
-    });
-
-
-    // Add services to the container.
-    builder.Services.Configure<CloudinaryConfig>(builder.Configuration.GetSection("CloudinarySettings"));
-
-    builder.Services.AddSingleton<Cloudinary>(sp =>
-    {
-        var config = sp.GetRequiredService<IOptions<CloudinaryConfig>>().Value;
-        return new Cloudinary(new Account(config.CloudName, config.ApiKey, config.ApiSecret));
     });
 
 

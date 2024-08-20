@@ -1187,6 +1187,7 @@
       "Service/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "CloudinaryDotNet": "1.26.2",
           "IdentityModel": "7.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
           "Microsoft.EntityFrameworkCore": "8.0.7",

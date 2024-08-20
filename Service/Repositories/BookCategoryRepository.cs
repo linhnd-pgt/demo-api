@@ -25,7 +25,7 @@ namespace Service.Repositories
 
         void DeleteBookCategory(BookCategoryEntity entity);
 
-        void DeleteBookCategoryByBookId(List<BookCategoryEntity> bookCategoryEntities);
+        void DeleteBookCategoryById(List<BookCategoryEntity> bookCategoryEntities);
     }
 
     public class BookCategoryRepository : RepositoryBase<BookRepository>, IBookCategoryRepository
@@ -46,7 +46,7 @@ namespace Service.Repositories
 
         public void UpdateBookCategory(BookCategoryEntity entity) => _dbContext.Remove(entity);
 
-        public void DeleteBookCategoryByBookId(List<BookCategoryEntity> bookCategoryEntities) => _dbContext.RemoveRange(bookCategoryEntities);
+        public void DeleteBookCategoryById(List<BookCategoryEntity> bookCategoryEntities) => _dbContext.RemoveRange(bookCategoryEntities);
 
         public void AddRangeBookCategory(List<BookCategoryEntity> bookCategoryEntities) => _dbContext.AddRange(bookCategoryEntities);
     }

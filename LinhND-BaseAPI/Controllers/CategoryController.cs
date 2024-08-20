@@ -3,35 +3,33 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs;
-using Service.Entities;
 using Service.Services.Base;
-using System.Net;
 using System.Security.Claims;
 
 namespace LinhND_BaseAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : BaseController
+    public class CategoryController : BaseController
     {
 
-        public BookController(IServiceManager serviceManager) : base(serviceManager) { }
+        public CategoryController(IServiceManager serviceManager) : base(serviceManager) { }
 
         /// <summary>
-        /// Retrieves a list of all books.
+        /// Retrieves a list of all categories.
         /// </summary>
         /// <remarks>
-        /// This endpoint returns a list of books available in the system.
+        /// This endpoint returns a list of categories available in the system.
         /// </remarks>
-        /// <returns>A list of books.</returns>
-        /// <response code="200">Returns the list of books.</response>
-        /// <response code="400">If no books are found.</response>
+        /// <returns>A list of categories.</returns>
+        /// <response code="200">Returns the list of categories.</response>
+        /// <response code="400">If no categories are found.</response>
         [HttpGet("get-all")]
-        [ProducesResponseType(typeof(IEnumerable<BookDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<CategoryDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllBooks()
+        public async Task<IActionResult> GetAllCategorys()
         {
-            var result = await _serviceManager.BookService.GetAllBook();
+            var result = await _serviceManager.CategoryService.GetAllCategory();
             if (result.Count == 0)
             {
                 return BadRequest(DevMessageConstants.OBJECT_IS_EMPTY);
@@ -40,27 +38,27 @@ namespace LinhND_BaseAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves a list of all books paginated with page size and page number.
+        /// Retrieves a list of all categories paginated with page size and page number.
         /// </summary>
         /// <remarks>
-        /// This endpoint returns a list of books available in the system paginated with page size and page number.
+        /// This endpoint returns a list of categories available in the system paginated with page size and page number.
         /// </remarks>
-        /// <returns>A list of books.</returns>
-        /// <response code="200">Returns the list of books.</response>
-        /// <response code="400">If no books are found.</response>
+        /// <returns>A list of categories.</returns>
+        /// <response code="200">Returns the list of categories.</response>
+        /// <response code="400">If no categories are found.</response>
         [HttpGet("get-all-paginated")]
-        [ProducesResponseType(typeof(IEnumerable<BookDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<CategoryDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllAuthorPaginated([FromQuery] int page, [FromQuery] int pageSize)
         {
 
-            if(page == 0 || pageSize == 0)
+            if (page == 0 || pageSize == 0)
             {
                 page = 1;
                 pageSize = 2;
             }
 
-            var result = await _serviceManager.BookService.GetAllBookPaginated(page, pageSize);
+            var result = await _serviceManager.CategoryService.GetAllCategoryPaginated(page, pageSize);
             if (result.Count == 0)
             {
                 return BadRequest(DevMessageConstants.OBJECT_IS_EMPTY);
@@ -85,7 +83,7 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateBook([FromForm] BookRequestDTO newBook)
+        public async Task<IActionResult> CreateCategory([FromForm] CategoryRequestDTO newCategory)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
@@ -94,7 +92,7 @@ namespace LinhND_BaseAPI.Controllers
                 return Unauthorized("User not found.");
             }
 
-            var result = await _serviceManager.BookService.AddBook(newBook, username);
+            var result = await _serviceManager.CategoryService.AddCategory(newCategory, username);
             if (!result)
             {
                 return BadRequest(DevMessageConstants.ADD_OBJECT_FAILED);
@@ -114,12 +112,12 @@ namespace LinhND_BaseAPI.Controllers
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If update failed.</response>
         [Authorize(Roles = "ROLE_LIBRARIAN")]
-        [HttpPut("update/{bookId}")]
+        [HttpPut("update/{categoryId}")]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateBook([FromForm] BookRequestDTO updatedBook, [FromRoute] long bookId)
+        public async Task<IActionResult> UpdateCategory([FromForm] CategoryRequestDTO updatedCategory, [FromRoute] long categoryId)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
@@ -128,7 +126,7 @@ namespace LinhND_BaseAPI.Controllers
                 return Unauthorized("User not found.");
             }
 
-            var result = await _serviceManager.BookService.UpdateBook(updatedBook, bookId, username);
+            var result = await _serviceManager.CategoryService.UpdateCategory(updatedCategory, categoryId, username);
             if (!result)
             {
                 return BadRequest(DevMessageConstants.NOTIFICATION_UPDATE_FAILED);
@@ -146,11 +144,11 @@ namespace LinhND_BaseAPI.Controllers
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If delete failed.</response>
         [Authorize(Roles = "ROLE_LIBRARIAN")]
-        [HttpDelete("delete/{bookId}")]
+        [HttpDelete("delete/{categoryId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteBook([FromRoute] long bookId)
+        public async Task<IActionResult> DeleteCategory([FromRoute] long categoryId)
         {
 
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
@@ -160,7 +158,7 @@ namespace LinhND_BaseAPI.Controllers
                 return Unauthorized("User not found.");
             }
 
-            var result = await _serviceManager.BookService.DeleteBook(bookId);
+            var result = await _serviceManager.CategoryService.DeleteCategory(categoryId);
             if (!result)
             {
                 return BadRequest(DevMessageConstants.NOTIFICATION_DELETE_FAILED);

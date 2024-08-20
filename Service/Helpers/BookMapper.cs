@@ -38,7 +38,6 @@ namespace Service.Helpers
 
         public BookEntity BookDtoToBookEntity(BookDTO bookDto) =>  new BookEntity
         {
-            Id = bookDto.Id,
             Title = bookDto.Title,
             Image = bookDto.Image,
             PublishedDate = bookDto.PublishDate
@@ -46,9 +45,7 @@ namespace Service.Helpers
 
         public BookEntity BookRequestDtoToBookEntity(BookRequestDTO bookRequestDto) => new BookEntity
         {
-            Id = bookRequestDto.Id,
             Title = bookRequestDto.Title,
-            Image = bookRequestDto.Image,
             PublishedDate = bookRequestDto.PublishDate,
             AuthorId = bookRequestDto.AuthorId,
         };
