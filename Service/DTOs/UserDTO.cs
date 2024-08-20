@@ -12,6 +12,7 @@ namespace Service.DTOs
     public class UserDTO
     {
         public long Id { get; set; }
+
         public string Username { get; set; } = String.Empty;
 
         public string Password { get; set; } = String.Empty;

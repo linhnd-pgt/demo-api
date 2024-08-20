@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Service.DTOs;
 using Service.Entities;
 using Service.Services.Base;
+using System.Security.Claims;
 
 namespace LinhND_BaseAPI.Controllers
 {
@@ -82,9 +83,16 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> CreateAutor([FromBody] AuthorDTO newAuthor)
+        public async Task<IActionResult> CreateAutor([FromBody] AuthorRequestDTO newAuthor)
         {
-            var result = await _serviceManager.AuthorService.CreateAuthor(newAuthor);
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("User not found.");
+            }
+
+            var result = await _serviceManager.AuthorService.CreateAuthor(newAuthor, username);
             if (!result)
             {
                 return NotFound(DevMessageConstants.ADD_OBJECT_FAILED);
@@ -109,10 +117,16 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateAuthor([FromRoute] long authorId, [FromBody] AuthorDTO newAuthor)
+        public async Task<IActionResult> UpdateAuthor([FromRoute] long authorId, [FromBody] AuthorRequestDTO newAuthor)
         {
-            newAuthor.Id = authorId;
-            var result = await _serviceManager.AuthorService.UpdateAuthor(newAuthor);
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("User not found.");
+            }
+
+            var result = await _serviceManager.AuthorService.UpdateAuthor(newAuthor, username, authorId);
             if (!result)
             {
                 return NotFound(DevMessageConstants.NOTIFICATION_UPDATE_FAILED);
@@ -137,6 +151,7 @@ namespace LinhND_BaseAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAuthor([FromRoute] long authorId)
         {
+
             var result = await _serviceManager.AuthorService.DeleteAuthor(authorId);
             if (!result)
             {

@@ -21,9 +21,9 @@ namespace Service.Services
 
         AuthorEntity GetAuthorById(long id);
 
-        Task<bool> CreateAuthor(AuthorDTO authorDTO);
+        Task<bool> CreateAuthor(AuthorRequestDTO authorDTO, string username);
 
-        Task<bool> UpdateAuthor(AuthorDTO authorDTO);
+        Task<bool> UpdateAuthor(AuthorRequestDTO authorDTO, string username, long authorId);
 
         Task<bool> DeleteAuthor(long authorID);
     }
@@ -51,12 +51,13 @@ namespace Service.Services
         }
 
         public AuthorEntity GetAuthorById(long id) => _repositoryManager.authorRepository.GetAuthorById(id).Result;
-        public async Task<bool> CreateAuthor(AuthorDTO authorDTO)
+        public async Task<bool> CreateAuthor(AuthorRequestDTO authorDTO, string username)
         {
             try
             {
-                AuthorEntity author = _authorMapper.AuthorDtoToEntity(authorDTO);
-                
+                AuthorEntity author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO);
+                author.CreatedBy = username;
+                author.UpdatedBy = username;
                 _repositoryManager.authorRepository.Create(author);
                 await _repositoryManager.SaveAsync();
                 return true;
@@ -68,18 +69,26 @@ namespace Service.Services
             
         }
 
-        public async Task<bool> UpdateAuthor(AuthorDTO authorDTO)
+        public async Task<bool> UpdateAuthor(AuthorRequestDTO authorDTO, string username, long authorId)
         {
-            try
+            AuthorEntity author = await _repositoryManager.authorRepository.GetAuthorById(authorId);
+            if (author != null)
             {
-                _repositoryManager.authorRepository.Update(_authorMapper.AuthorDtoToEntity(authorDTO));
-                await _repositoryManager.SaveAsync();
-                return true;
+                try
+                {
+                    author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO);
+                    author.CreatedBy = username;
+                    author.UpdatedBy = username;
+                    _repositoryManager.authorRepository.Create(author);
+                    await _repositoryManager.SaveAsync();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return false;
 
         }
 

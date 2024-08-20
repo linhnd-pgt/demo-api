@@ -19,9 +19,9 @@ namespace Service.Services
 
         Task<List<BookDTO>> GetAllBookPaginated(int page, int pageSize);
 
-        Task<bool> AddBook(BookRequestDTO bookDTO);
+        Task<bool> AddBook(BookRequestDTO bookDTO, string username);
 
-        Task<bool> UpdateBook(BookRequestDTO bookDTO);
+        Task<bool> UpdateBook(BookRequestDTO bookDTO, long bookId, string username);
 
         Task<bool> DeleteBook(long bookId);
     }
@@ -31,9 +31,12 @@ namespace Service.Services
 
         private readonly IBookMapper _bookMapper = new BookMapper();
 
-        public BookService(IRepositoryManager repositoryManager) : base(repositoryManager)
+        private readonly ICloudinaryService _cloudinaryService;
+
+        public BookService(IRepositoryManager repositoryManager, ICloudinaryService cloudinaryService) : base(repositoryManager)
         {
             _bookMapper = new BookMapper();
+            _cloudinaryService = cloudinaryService;
         }
 
         public async Task<List<BookDTO>> GetAllBook()
@@ -49,7 +52,7 @@ namespace Service.Services
             return bookEntityList.ToList().Skip(page).Take(pageSize).Select(e => _bookMapper.BookEntityToBookDto(e)).ToList();
         }
 
-        public async Task<bool> AddBook(BookRequestDTO bookDTO)
+        public async Task<bool> AddBook(BookRequestDTO bookDTO, string username)
         {
             try
             {
@@ -79,6 +82,18 @@ namespace Service.Services
                     book.BookCategoryList.Add(bookCategory);
                 }
 
+                // uploading book's cover image
+                var uploadResult = await _cloudinaryService.UploadImageAsync(bookDTO.Image);
+                if (uploadResult.Error != null)
+                {
+                    return false;
+                }
+
+                book.Image = uploadResult.SecureUrl.ToString();
+
+                book.CreatedBy = username;
+                book.UpdatedBy = username;
+
                 _repositoryManager.bookRepository.AddBook(book);
 
                 await _repositoryManager.SaveAsync();
@@ -92,9 +107,9 @@ namespace Service.Services
             }
         }
 
-        public async Task<bool> UpdateBook(BookRequestDTO bookDTO)
+        public async Task<bool> UpdateBook(BookRequestDTO bookDTO, long bookId, string username)
         {
-            BookEntity bookEntity = await _repositoryManager.bookRepository.GetBookById(bookDTO.Id);
+            BookEntity bookEntity = await _repositoryManager.bookRepository.GetBookById(bookId);
             if (bookEntity != null)
             {
                 try
@@ -105,7 +120,7 @@ namespace Service.Services
 
                     foreach (var categoryId in bookDTO.CategoryIdList)
                     {
-                        if (_repositoryManager.categoryRepository.GetById(categoryId) == null)
+                        if (await _repositoryManager.categoryRepository.GetById(categoryId) == null)
                         {
                             return false;
                         }
@@ -116,9 +131,9 @@ namespace Service.Services
                         });
                     }
 
-                    List<BookCategoryEntity> bookCategories = _repositoryManager.bookCategoryRepository.GetByBookId(bookDTO.Id).Result;
+                    List<BookCategoryEntity> bookCategories = await _repositoryManager.bookCategoryRepository.GetByBookId(bookId);
 
-                    _repositoryManager.bookCategoryRepository.DeleteBookCategoryByBookId(bookCategories);
+                    _repositoryManager.bookCategoryRepository.DeleteBookCategoryById(bookCategories);
 
                     await _repositoryManager.SaveAsync();
 
@@ -132,6 +147,19 @@ namespace Service.Services
                         book.BookCategoryList.Add(bookCategory);
                     }
 
+                    // uploading book's cover image
+                    var uploadResult = await _cloudinaryService.UploadImageAsync(bookDTO.Image);
+
+                    if (uploadResult.Error != null)
+                    {
+                        return false;
+                    }
+
+                    book.Image = uploadResult.SecureUrl.ToString();
+
+                    book.UpdatedBy = username;
+
+                    // saving book to db
                     _repositoryManager.bookRepository.Update(book);
 
                     await _repositoryManager.SaveAsync();

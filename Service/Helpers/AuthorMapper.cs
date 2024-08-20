@@ -14,6 +14,8 @@ namespace Service.Helpers
 
         AuthorDTO AuthorEnityToAuthorDto(AuthorEntity authorEntity);
 
+        AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO authorRequestDTO);
+
     }
 
     public class AuthorMapper : IAuthorMapper
@@ -38,5 +40,12 @@ namespace Service.Helpers
             };
             
         }
+
+        public AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO authorRequestDTO) => new AuthorEntity
+        {
+            Name = authorRequestDTO.Name,
+            Biography = authorRequestDTO.Biography,
+            DateOfBirth = authorRequestDTO.DateOfBirth,
+        };
     }
 }

@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "D:\\.NET-Projects\\LinhND-BaseAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}|LinhND-BaseAPI\\LinhND-BaseAPI.csproj|d:\\.net-projects\\linhnd-baseapi\\linhnd-baseapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}|LinhND-BaseAPI\\LinhND-BaseAPI.csproj|solutionrelative:linhnd-baseapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}|LinhND-BaseAPI\\LinhND-BaseAPI.csproj|d:\\.net-projects\\linhnd-baseapi\\linhnd-baseapi\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A14B51B9-D2AE-4C6B-B65B-DB30D80D9DBA}|LinhND-BaseAPI\\LinhND-BaseAPI.csproj|solutionrelative:linhnd-baseapi\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\services\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\services\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\repositories\\bookcategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\repositories\\bookcategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\repositories\\base\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\repositories\\base\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\helpers\\categorymapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\helpers\\categorymapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|d:\\.net-projects\\linhnd-baseapi\\service\\services\\base\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50293CE1-7630-49E0-8E76-B69BCAFF90DE}|Service\\Service.csproj|solutionrelative:service\\services\\base\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,73 +42,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RepositoryContext.cs",
-              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\Base\\RepositoryContext.cs",
-              "RelativeDocumentMoniker": "Service\\Repositories\\Base\\RepositoryContext.cs",
-              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\Base\\RepositoryContext.cs",
-              "RelativeToolTip": "Service\\Repositories\\Base\\RepositoryContext.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAADwv1gAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T10:24:47.772Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BookCategoryRepository.cs",
-              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookCategoryRepository.cs",
-              "RelativeDocumentMoniker": "Service\\Repositories\\BookCategoryRepository.cs",
-              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookCategoryRepository.cs",
-              "RelativeToolTip": "Service\\Repositories\\BookCategoryRepository.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAADgvyYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T10:15:27.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BookRepository.cs",
-              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookRepository.cs",
-              "RelativeDocumentMoniker": "Service\\Repositories\\BookRepository.cs",
-              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookRepository.cs",
-              "RelativeToolTip": "Service\\Repositories\\BookRepository.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAIAxwC8AAABiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T10:04:02.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthorService.cs",
-              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\AuthorService.cs",
-              "RelativeDocumentMoniker": "Service\\Services\\AuthorService.cs",
-              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\AuthorService.cs",
-              "RelativeToolTip": "Service\\Services\\AuthorService.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAiwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T10:00:45.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BookService.cs",
-              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\BookService.cs",
-              "RelativeDocumentMoniker": "Service\\Services\\BookService.cs",
-              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\BookService.cs",
-              "RelativeToolTip": "Service\\Services\\BookService.cs",
-              "ViewState": "AQIAAGwAAAAAAAAAAAAqwH0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T09:01:23.908Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -109,9 +52,100 @@
               "RelativeDocumentMoniker": "LinhND-BaseAPI\\Controllers\\BookController.cs",
               "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\LinhND-BaseAPI\\Controllers\\BookController.cs",
               "RelativeToolTip": "LinhND-BaseAPI\\Controllers\\BookController.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAqwHIAAAAMAAAA",
+              "ViewState": "AQIAAJAAAAAAAAAAAAAowKoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T09:00:33.813Z",
+              "WhenOpened": "2024-08-20T10:25:02.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\LinhND-BaseAPI\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "LinhND-BaseAPI\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\LinhND-BaseAPI\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "LinhND-BaseAPI\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:24:36.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookCategoryRepository.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookCategoryRepository.cs",
+              "RelativeDocumentMoniker": "Service\\Repositories\\BookCategoryRepository.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Repositories\\BookCategoryRepository.cs",
+              "RelativeToolTip": "Service\\Repositories\\BookCategoryRepository.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA7wDAAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:22:51.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CategoryMapper.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Helpers\\CategoryMapper.cs",
+              "RelativeDocumentMoniker": "Service\\Helpers\\CategoryMapper.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Helpers\\CategoryMapper.cs",
+              "RelativeToolTip": "Service\\Helpers\\CategoryMapper.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAYwB8AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T09:59:02.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ServiceManager.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\Base\\ServiceManager.cs",
+              "RelativeDocumentMoniker": "Service\\Services\\Base\\ServiceManager.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\Base\\ServiceManager.cs",
+              "RelativeToolTip": "Service\\Services\\Base\\ServiceManager.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAkwCUAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T09:54:37.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServiceExtensions.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\ServiceExtensions.cs",
+              "RelativeDocumentMoniker": "Service\\ServiceExtensions.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\ServiceExtensions.cs",
+              "RelativeToolTip": "Service\\ServiceExtensions.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAQwDkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T09:53:53.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "Service\\Services\\BookService.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\BookService.cs",
+              "RelativeToolTip": "Service\\Services\\BookService.cs",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAcwJEAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T09:52:58.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\CategoryService.cs",
+              "RelativeDocumentMoniker": "Service\\Services\\CategoryService.cs",
+              "ToolTip": "D:\\.NET-Projects\\LinhND-BaseAPI\\Service\\Services\\CategoryService.cs",
+              "RelativeToolTip": "Service\\Services\\CategoryService.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAUwIIAAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T09:50:28.532Z",
               "EditorCaption": ""
             }
           ]
