@@ -13,41 +13,47 @@ namespace Service.Helpers
     {
         BookDTO BookEntityToBookDto(BookEntity book);
 
-        BookEntity BookDtoToBookEntity(BookDTO bookDto);
+        BookEntity BookDtoToBookEntity(BookDTO source, BookEntity target);
 
-        BookEntity BookRequestDtoToBookEntity(BookRequestDTO bookRequestDto);
+        BookEntity BookRequestDtoToBookEntity(BookRequestDTO source, BookEntity target);
     }
 
     public class BookMapper : IBookMapper
     {
 
-        public BookDTO BookEntityToBookDto(BookEntity book) => new BookDTO
+        public BookDTO BookEntityToBookDto(BookEntity book)
         {
-            Id = book.Id,
-            Title = book.Title,
-            Image = book.Image,
-            PublishDate = book.PublishedDate,
-            Author = new AuthorDTO
+            List<CategoryDTO> categoryDTOs = new List<CategoryDTO>();
+            return new BookDTO
             {
-                Id = book.Author.Id,
-                Name = book.Author.Name,
-                Biography = book.Author.Biography,
-                DateOfBirth = book.Author.DateOfBirth
-            }
-        };
+                Id = book.Id,
+                Title = book.Title,
+                Image = book.Image,
+                PublishDate = book.PublishedDate,
+                Author = new AuthorDTO
+                {
+                    Id = book.Author.Id,
+                    Name = book.Author.Name,
+                    Biography = book.Author.Biography,
+                    DateOfBirth = book.Author.DateOfBirth
+                },
+            };
+        }
 
-        public BookEntity BookDtoToBookEntity(BookDTO bookDto) =>  new BookEntity
+        public BookEntity BookDtoToBookEntity(BookDTO source, BookEntity target) 
         {
-            Title = bookDto.Title,
-            Image = bookDto.Image,
-            PublishedDate = bookDto.PublishDate
-        };
+            target.Title = source.Title;
+            target.Image = source.Image;
+            target.PublishedDate = source.PublishDate;
+            return target;
+        }
 
-        public BookEntity BookRequestDtoToBookEntity(BookRequestDTO bookRequestDto) => new BookEntity
+        public BookEntity BookRequestDtoToBookEntity(BookRequestDTO source, BookEntity target)
         {
-            Title = bookRequestDto.Title,
-            PublishedDate = bookRequestDto.PublishDate,
-            AuthorId = bookRequestDto.AuthorId,
-        };
+            target.Title = source.Title;
+            target.PublishedDate = source.PublishDate;
+            target.AuthorId = source.AuthorId;
+            return target;
+        }
     }
 }

@@ -40,6 +40,28 @@ namespace LinhND_BaseAPI.Controllers
         }
 
         /// <summary>
+        /// Retrieves a list of all books.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of books filtered by keyword available in the system.
+        /// </remarks>
+        /// <returns>A list of books filtered by keyword.</returns>
+        /// <response code="200">Returns the list of books filtered by keyword.</response>
+        /// <response code="400">If no books are found.</response>
+        [HttpGet("get-all-filtered")]
+        [ProducesResponseType(typeof(IEnumerable<BookDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(String), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> FilterBooks([FromQuery] string keyword)
+        {
+            var result = await _serviceManager.BookService.FilterBook(keyword);
+            if (result == null)
+            {
+                return BadRequest(DevMessageConstants.OBJECT_IS_EMPTY);
+            }
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Retrieves a list of all books paginated with page size and page number.
         /// </summary>
         /// <remarks>
@@ -79,7 +101,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If add failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpPost("create")]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -113,7 +135,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If update failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpPut("update/{bookId}")]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -145,7 +167,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If delete failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpDelete("delete/{bookId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]

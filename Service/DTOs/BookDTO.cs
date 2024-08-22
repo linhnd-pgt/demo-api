@@ -18,5 +18,7 @@ namespace Service.DTOs
 
         public AuthorDTO Author { get; set; }
 
+        public List<CategoryDTO> CategoryDTOs { get; set; }
+
     }
 }

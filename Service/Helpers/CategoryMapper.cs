@@ -21,6 +21,7 @@ namespace Service.Helpers
     {
         public CategoryDTO CategoryEntityToCategoryDto(CategoryEntity categoryEntity) => new CategoryDTO
         {
+            Id = categoryEntity.Id,
             Name = categoryEntity.Name
         };
 

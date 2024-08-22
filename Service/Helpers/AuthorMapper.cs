@@ -10,42 +10,39 @@ namespace Service.Helpers
 {
     public interface IAuthorMapper
     {
-        AuthorEntity AuthorDtoToEntity(AuthorDTO authorDTO);
+        AuthorEntity AuthorDtoToEntity(AuthorDTO source, AuthorEntity target);
 
-        AuthorDTO AuthorEnityToAuthorDto(AuthorEntity authorEntity);
+        AuthorDTO AuthorEnityToAuthorDto(AuthorEntity source);
 
-        AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO authorRequestDTO);
+        AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO source, AuthorEntity target);
 
     }
 
     public class AuthorMapper : IAuthorMapper
     {
-        public AuthorEntity AuthorDtoToEntity(AuthorDTO authorDTO) => new AuthorEntity
+        public AuthorEntity AuthorDtoToEntity(AuthorDTO source, AuthorEntity target) 
         {
-            Id = authorDTO.Id,
-            Name = authorDTO.Name,
-            Biography = authorDTO.Biography,
-            DateOfBirth = authorDTO.DateOfBirth,
-
-        };
-
-        public AuthorDTO AuthorEnityToAuthorDto(AuthorEntity authorEntity)
-        {
-            return new AuthorDTO
-            {
-                Id = authorEntity.Id,
-                Name = authorEntity.Name,
-                Biography = authorEntity.Biography,
-                DateOfBirth = authorEntity.DateOfBirth,
-            };
-            
+            target.Id = source.Id;
+            target.Name = source.Name;
+            target.DateOfBirth = source.DateOfBirth;
+            target.Biography = source.Biography;
+            return target;
         }
 
-        public AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO authorRequestDTO) => new AuthorEntity
+        public AuthorDTO AuthorEnityToAuthorDto(AuthorEntity source) => new AuthorDTO()
         {
-            Name = authorRequestDTO.Name,
-            Biography = authorRequestDTO.Biography,
-            DateOfBirth = authorRequestDTO.DateOfBirth,
+            Id = source.Id,
+            DateOfBirth = source.DateOfBirth,
+            Name = source.Name,
+            Biography = source.Biography,
         };
+
+        public AuthorEntity AuthorRequestDtoToAuthorEntity(AuthorRequestDTO source, AuthorEntity target) 
+        {
+            target.Name = source.Name;
+            target.Biography = source.Biography;
+            target.DateOfBirth = source.DateOfBirth;
+            return target;
+        }
     }
 }

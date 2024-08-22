@@ -19,6 +19,8 @@ namespace Service.Services
 
         Task<List<AuthorDTO>> GetAuthorListPaginated(int page, int pageSize);
 
+        Task<List<AuthorDTO>> GetAuthorByName(string keyword);
+
         AuthorEntity GetAuthorById(long id);
 
         Task<bool> CreateAuthor(AuthorRequestDTO authorDTO, string username);
@@ -55,7 +57,8 @@ namespace Service.Services
         {
             try
             {
-                AuthorEntity author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO);
+                AuthorEntity author = new AuthorEntity();
+                author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO, author);
                 author.CreatedBy = username;
                 author.UpdatedBy = username;
                 _repositoryManager.authorRepository.Create(author);
@@ -76,10 +79,10 @@ namespace Service.Services
             {
                 try
                 {
-                    author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO);
+                    author = _authorMapper.AuthorRequestDtoToAuthorEntity(authorDTO, author);
                     author.CreatedBy = username;
                     author.UpdatedBy = username;
-                    _repositoryManager.authorRepository.Create(author);
+                    _repositoryManager.authorRepository.Update(author);
                     await _repositoryManager.SaveAsync();
                     return true;
                 }
@@ -105,6 +108,11 @@ namespace Service.Services
                 return false;
             }
 
+        }
+
+        public async Task<List<AuthorDTO>> GetAuthorByName(string keyword)
+        {
+            return await _repositoryManager.authorRepository.FilterAuthorByName(keyword);
         }
 
     }

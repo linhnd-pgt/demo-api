@@ -15,6 +15,17 @@
             <response code="200">Returns the list of authors.</response>
             <response code="404">If no authors are found.</response>
         </member>
+        <member name="M:LinhND_BaseAPI.Controllers.AuthorController.GetAllAuthorByName(System.String)">
+            <summary>
+            Retrieves a list of all authors.
+            </summary>
+            <remarks>
+            This endpoint returns a list of authors available in the system.
+            </remarks>
+            <returns>A list of authors.</returns>
+            <response code="200">Returns the list of authors.</response>
+            <response code="404">If no authors are found.</response>
+        </member>
         <member name="M:LinhND_BaseAPI.Controllers.AuthorController.GetAllAuthorPaginated(System.Int32,System.Int32)">
             <summary>
             Retrieves a list of all authors paginated with page size and page number.
@@ -68,6 +79,17 @@
             </remarks>
             <returns>A list of books.</returns>
             <response code="200">Returns the list of books.</response>
+            <response code="400">If no books are found.</response>
+        </member>
+        <member name="M:LinhND_BaseAPI.Controllers.BookController.FilterBooks(System.String)">
+            <summary>
+            Retrieves a list of all books.
+            </summary>
+            <remarks>
+            This endpoint returns a list of books filtered by keyword available in the system.
+            </remarks>
+            <returns>A list of books filtered by keyword.</returns>
+            <response code="200">Returns the list of books filtered by keyword.</response>
             <response code="400">If no books are found.</response>
         </member>
         <member name="M:LinhND_BaseAPI.Controllers.BookController.GetAllAuthorPaginated(System.Int32,System.Int32)">

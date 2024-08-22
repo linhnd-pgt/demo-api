@@ -27,7 +27,8 @@ namespace Service.Helpers
         {
             Id = userEntity.Id,
             Email = userEntity.Email,
-            Username = userEntity.UserName
+            Username = userEntity.UserName,
+            Role = userEntity.Role.ToString(),
         };
 
     }

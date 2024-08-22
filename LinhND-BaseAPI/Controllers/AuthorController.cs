@@ -39,6 +39,28 @@ namespace LinhND_BaseAPI.Controllers
         }
 
         /// <summary>
+        /// Retrieves a list of all authors.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of authors available in the system.
+        /// </remarks>
+        /// <returns>A list of authors.</returns>
+        /// <response code="200">Returns the list of authors.</response>
+        /// <response code="404">If no authors are found.</response>
+        [HttpGet("get-all-by-name")]
+        [ProducesResponseType(typeof(IEnumerable<AuthorDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAllAuthorByName([FromQuery] string keyword)
+        {
+            var result = await _serviceManager.AuthorService.GetAuthorByName(keyword);
+            if (result.Count == 0)
+            {
+                return NotFound(DevMessageConstants.OBJECT_IS_EMPTY);
+            }
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Retrieves a list of all authors paginated with page size and page number.
         /// </summary>
         /// <remarks>
@@ -78,11 +100,11 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If add failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_ADMIN")]
         [HttpPost("create")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateAutor([FromBody] AuthorRequestDTO newAuthor)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
@@ -95,7 +117,7 @@ namespace LinhND_BaseAPI.Controllers
             var result = await _serviceManager.AuthorService.CreateAuthor(newAuthor, username);
             if (!result)
             {
-                return NotFound(DevMessageConstants.ADD_OBJECT_FAILED);
+                return BadRequest(DevMessageConstants.ADD_OBJECT_FAILED);
             }
             return Ok(DevMessageConstants.ADD_OBJECT_SUCCESS);
 
@@ -112,24 +134,24 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="404">If update failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_ADMIN")]
         [HttpPut("update/{authorId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateAuthor([FromRoute] long authorId, [FromBody] AuthorRequestDTO newAuthor)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
             if (string.IsNullOrEmpty(username))
             {
-                return Unauthorized("User not found.");
+                return BadRequest("User not found.");
             }
 
             var result = await _serviceManager.AuthorService.UpdateAuthor(newAuthor, username, authorId);
             if (!result)
             {
-                return NotFound(DevMessageConstants.NOTIFICATION_UPDATE_FAILED);
+                return BadRequest(DevMessageConstants.NOTIFICATION_UPDATE_FAILED);
             }
             return Ok(DevMessageConstants.NOTIFICATION_UPDATE_SUCCESS);
         }
@@ -148,14 +170,14 @@ namespace LinhND_BaseAPI.Controllers
         [HttpDelete("delete/{authorId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAuthor([FromRoute] long authorId)
         {
 
             var result = await _serviceManager.AuthorService.DeleteAuthor(authorId);
             if (!result)
             {
-                return NotFound(DevMessageConstants.NOTIFICATION_DELETE_FAILED);
+                return BadRequest(DevMessageConstants.NOTIFICATION_DELETE_FAILED);
             }
             return Ok(DevMessageConstants.NOTIFICATION_DELETE_SUCCESS);
         }
