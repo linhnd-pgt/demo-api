@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs;
 using Service.Services.Base;
+using System.Security.Claims;
 
 namespace LinhND_BaseAPI.Controllers
 {
@@ -18,8 +19,8 @@ namespace LinhND_BaseAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
-            var isUserRegistered = await _serviceManager.UserService.CreateUser(userDTO);
-            if (!isUserRegistered)
+            string isUserRegistered = await _serviceManager.UserService.CreateUser(userDTO);
+            if (!isUserRegistered.Equals(DevMessageConstants.ADD_OBJECT_SUCCESS))
             {
                 return BadRequest(DevMessageConstants.ADD_OBJECT_FAILED);
             }
@@ -41,7 +42,6 @@ namespace LinhND_BaseAPI.Controllers
             {
                 HttpOnly = true
             });
-
             return Ok(authenRes);
         }
 
@@ -58,18 +58,32 @@ namespace LinhND_BaseAPI.Controllers
         [HttpPut("update-role")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateUser([FromQuery] long id, string role)
         {
+
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("User not found.");
+            }
+
             if (role == "ROLE_ADMIN" || role == "ROLE_LIBRARIAN" || role == "ROLE_MEMBER")
             {
-                var user = await _serviceManager.UserService.GetUserById(id);
-                if (user == null)
+
+                UserDTO userDTO = new UserDTO
                 {
-                    return NotFound(DevMessageConstants.NOTIFICATION_DELETE_FAILED);
+                    Id = id,
+                    Role = role,
+                };
+                
+                var result = await _serviceManager.UserService.UpdateUser(userDTO, username);
+                if (!result.Equals(DevMessageConstants.NOTIFICATION_UPDATE_SUCCESS))
+                {
+                    return BadRequest(result);
                 }
-                var result = await _serviceManager.UserService.UpdateUserWithEntity(user);
-                return Ok(DevMessageConstants.NOTIFICATION_DELETE_SUCCESS);
+                return Ok(result);
             }
 
             return BadRequest(DevMessageConstants.NOT_VALID);

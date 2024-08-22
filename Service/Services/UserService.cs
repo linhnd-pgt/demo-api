@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Service.Constants;
 using Service.DTOs;
 using Service.Entities;
 using Service.Helpers;
@@ -16,17 +17,17 @@ namespace Service.Services
     public interface IUserService
     {
 
-        Task<bool> CreateUser(UserDTO userDTO);
+        Task<string> CreateUser(UserDTO userDTO);
 
-        Task<bool> UpdateUser(UserDTO userDTO);
-
-        Task<UserDTO> UpdateUserWithEntity(UserEntity user);
+        Task<string> UpdateUser(UserDTO userDTO, string username);
 
         Task<UserEntity> GetUserLoggedIn(string email, string password);
 
         Task<UserEntity> GetUserByUsername(string username);
 
         Task<UserEntity> GetUserById(long id);
+        
+        Task<UserDTO> UpdateUserWithEntity(UserEntity user);
 
     }
 
@@ -40,20 +41,22 @@ namespace Service.Services
             _userMapper = new UserMapper();
         }
 
-        public async Task<bool> CreateUser(UserDTO userDTO)
+        public async Task<string> CreateUser(UserDTO userDTO)
         {
             try
             {
                 var user = _userMapper.userDtoToEntity(userDTO);
                 user.Role = Enums.EnumType.Role.ROLE_MEMBER;
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
+                user.CreatedBy = user.UserName;
+                user.UpdatedBy = user.UserName;
                 _repositoryManager.userRepository.Create(user);
                 await _repositoryManager.SaveAsync();
-                return true;
+                return DevMessageConstants.ADD_OBJECT_SUCCESS;
             }
-            catch
+            catch(Exception ex)
             {
-                return false;
+                return DevMessageConstants.ADD_OBJECT_FAILED + "Error: " + ex;
             }
 
         }
@@ -72,18 +75,40 @@ namespace Service.Services
             return user;
         }
 
-        public async Task<bool> UpdateUser(UserDTO userDTO)
+        public async Task<string> UpdateUser(UserDTO userDTO, string username)
         {
-            try
+            UserEntity existedUser = await _repositoryManager.userRepository.GetUserById(userDTO.Id);
+            if(existedUser != null)
             {
-                _repositoryManager.userRepository.Update(_userMapper.userDtoToEntity(userDTO));
-                await _repositoryManager.SaveAsync();
-                return true;
+                try
+                {
+                    switch (userDTO.Role)
+                    {
+                        case "ROLE_ADMIN":
+                            existedUser.Role = Enums.EnumType.Role.ROLE_ADMIN;
+                            break;
+                        case "ROLE_LIBRARIAN":
+                            existedUser.Role = Enums.EnumType.Role.ROLE_LIBRARIAN;
+                            break;
+                        case "ROLE_MEMBER":
+                            existedUser.Role = Enums.EnumType.Role.ROLE_MEMBER;
+                            break;
+                    }
+
+                    existedUser.UpdatedBy = username;
+
+                    _repositoryManager.userRepository.Update(existedUser);
+
+                    await _repositoryManager.SaveAsync();
+
+                    return DevMessageConstants.NOTIFICATION_UPDATE_SUCCESS;
+                }
+                catch (Exception ex)
+                {
+                    return DevMessageConstants.NOTIFICATION_UPDATE_FAILED + "Error: " + ex;
+                }
             }
-            catch
-            {
-                return false;
-            }
+            return DevMessageConstants.OBJECT_NOT_FOUND;
         }
 
         public async Task<UserDTO> UpdateUserWithEntity(UserEntity user)

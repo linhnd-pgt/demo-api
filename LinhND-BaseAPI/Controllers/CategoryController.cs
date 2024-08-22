@@ -77,7 +77,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If add failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpPost("create")]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -111,7 +111,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If update failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpPut("update/{categoryId}")]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -143,7 +143,7 @@ namespace LinhND_BaseAPI.Controllers
         /// <returns>A message.</returns>
         /// <response code="200">Returns a message.</response>
         /// <response code="400">If delete failed.</response>
-        [Authorize(Roles = "ROLE_LIBRARIAN")]
+        [Authorize(Roles = "ROLE_LIBRARIAN, ROLE_ADMIN")]
         [HttpDelete("delete/{categoryId}")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(String), StatusCodes.Status401Unauthorized)]
@@ -167,6 +167,7 @@ namespace LinhND_BaseAPI.Controllers
 
 
         }
+
 
     }
 }

@@ -24,6 +24,8 @@ namespace Service.Services
         Task<bool> UpdateBook(BookRequestDTO bookDTO, long bookId, string username);
 
         Task<bool> DeleteBook(long bookId);
+
+        Task<List<BookDTO>> FilterBook(string keyword);
     }
 
     public class BookService : ServiceBase, IBookService
@@ -42,7 +44,7 @@ namespace Service.Services
         public async Task<List<BookDTO>> GetAllBook()
         {
             var bookEntityList = await _repositoryManager.bookRepository.GetBookList();
-            return bookEntityList.ToList().Select(e => _bookMapper.BookEntityToBookDto(e)).ToList();
+            return bookEntityList.Select(e => _bookMapper.BookEntityToBookDto(e)).ToList();
 
         }
 
@@ -56,7 +58,8 @@ namespace Service.Services
         {
             try
             {
-                BookEntity book = _bookMapper.BookRequestDtoToBookEntity(bookDTO);
+                BookEntity book = new BookEntity();
+                book = _bookMapper.BookRequestDtoToBookEntity(bookDTO, book);
 
                 List<BookCategoryEntity> bookCategoryEntities = new List<BookCategoryEntity>();
 
@@ -109,12 +112,12 @@ namespace Service.Services
 
         public async Task<bool> UpdateBook(BookRequestDTO bookDTO, long bookId, string username)
         {
-            BookEntity bookEntity = await _repositoryManager.bookRepository.GetBookById(bookId);
-            if (bookEntity != null)
+            BookEntity book = await _repositoryManager.bookRepository.GetBookById(bookId);
+            if (book != null)
             {
                 try
                 {
-                    BookEntity book = _bookMapper.BookRequestDtoToBookEntity(bookDTO);
+                    book = _bookMapper.BookRequestDtoToBookEntity(bookDTO, book);
 
                     List<BookCategoryEntity> bookCategoryEntities = new List<BookCategoryEntity>();
 
@@ -191,5 +194,7 @@ namespace Service.Services
                 return false;
             }
         }
+
+        public async Task<List<BookDTO>> FilterBook(string keyword) => await _repositoryManager.bookRepository.FilterBook(keyword);
     }
 }

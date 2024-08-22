@@ -19,6 +19,8 @@ namespace Service.Repositories
 
         Task<CategoryEntity> GetById(long id);
 
+        Task<List<CategoryDTO>> GetByBookId(long bookId);
+
         void AddCategory(CategoryEntity categoryEntity);
 
         void UpdateCategory(CategoryEntity categoryEntity);
@@ -55,6 +57,22 @@ namespace Service.Repositories
 
         public async Task<CategoryEntity> GetById(long id) => await _dbContext.Category.FirstOrDefaultAsync(x => x.Id == id);
 
-       
+        public async Task<List<CategoryDTO>> GetByBookId(long bookId)
+        {
+            var categoryDtoList = from book in _dbContext.Book
+                           join bookCate in _dbContext.BookCategories
+                           on book.Id equals bookCate.BookId
+                           join cate in _dbContext.Category
+                           on bookCate.CategoryId equals cate.Id
+                           where book.Id == bookId
+                           select new CategoryDTO
+                           {
+                               Id = cate.Id,
+                               Name = cate.Name,
+                           };
+
+            return await categoryDtoList.ToListAsync();
+
+        }
     }
 }
